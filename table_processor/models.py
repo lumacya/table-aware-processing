@@ -57,7 +57,8 @@ class SheetMeta(BaseModel):
 
 
 class Chunk(BaseModel):
-    """Один чанк таблицы — фрагмент данных, готовый к индексации или передаче в LLM."""
+    """Один чанк таблицы — фрагмент данных,
+    готовый к индексации или передаче в LLM."""
 
     id: str
     filename: str
@@ -75,7 +76,8 @@ class Chunk(BaseModel):
 
 
 class ProcessingResult(BaseModel):
-    """Итоговый результат обработки одного файла: агрегированная статистика и список чанков."""
+    """Итоговый результат обработки одного файла:
+    агрегированная статистика и список чанков."""
 
     filename: str
     strategy: ChunkStrategy
@@ -84,3 +86,4 @@ class ProcessingResult(BaseModel):
     total_chunks: int
     chunks: list[Chunk] = Field(default_factory=list)
     warnings: list[str] = Field(default_factory=list)
+    sheets: dict[str, SheetMeta] = Field(default_factory=dict)
